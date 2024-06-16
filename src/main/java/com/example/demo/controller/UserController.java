@@ -39,10 +39,7 @@ public class UserController {
     @PostMapping("/register")
     public User register(@RequestBody User user) {
         cString.setText(user.getUsername());
-        if (!userDao.findByName(cString).isEmpty()) {
-
-            return null;
-        } else {
+        if (userDao.findByName(cString).isEmpty()) {
             userDao.register(user);
 
             List<User> res = userDao.findByName(cString);
@@ -50,6 +47,9 @@ public class UserController {
                 return res.get(0);
             else
                 return null;
+        } else {
+            return null;
+
         }
     }
 
