@@ -34,11 +34,14 @@ public class UserController {
 
     public CString cString = new CString();
 
+    public User nonUser = new User();
+
     // 注册接口
     // 参数 user对象 返回 uid 成功 0 or null 失败
     @PostMapping("/register")
     public User register(@RequestBody User user) {
         cString.setText(user.getUsername());
+        nonUser.setId(0);
         if (userDao.findByName(cString).isEmpty()) {
             userDao.register(user);
 
@@ -46,9 +49,9 @@ public class UserController {
             if (!res.isEmpty())
                 return res.get(0);
             else
-                return null;
+                return nonUser;
         } else {
-            return null;
+            return nonUser;
 
         }
     }
