@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.BookDao">
+
+    <!-- 模糊搜索书籍的查询语句 -->
+    <select id="searchBook" parameterType="com.example.demo.entity.CString"
+        resultType="com.example.demo.entity.Book"> select * from book where name like '%${text}%'; </select>
+    <!-- 通过ID查找书籍的查询语句 -->
+    <select id="findBook" parameterType="int" resultType="com.example.demo.entity.Book"> select *
+        from book where id = #{id} </select>
+
+    <!-- 插入书籍的插入语句 -->
+    <insert id="newBook" parameterType="com.example.demo.entity.Book"> insert into book (name,
+        publisher, author, cover, discription, preview, edition, year, pages, isbn, isbn13, ban,
+        categories) values (#{name}, #{publisher}, #{author}, #{cover}, #{description}, #{preview},
+        #{edition}, #{year}, #{pages}, #{isbn}, #{isbn13}, #{ban}, #{categories}) </insert>
+
+    <!-- 更新书籍信息的更新语句 -->
+    <update id="modBook" parameterType="com.example.demo.entity.Book"> update book set name =
+        #{name}, publisher = #{publisher}, author = #{author}, cover = #{cover},pewview=#{pewview},
+        description = #{description}, categories = #{categories},edition = #{edition}, year =
+        #{year}, pages = #{pages}, isbn = #{isbn}, isbn13 = #{isbn13} where id = #{id} </update>
+
+    <!-- 禁止书籍的更新语句 -->
+    <update id="banBook" parameterType="com.example.demo.entity.Book"> update book set ban = true
+        where id = #{id} </update>
+    <!-- 查询最新n条数据 -->
+    <select id="latestItems" resultType="com.example.demo.entity.Book"> SELECT * FROM book ORDER BY
+        id DESC LIMIT 24 </select>
+    <!-- 查询书是否被借出 -->
+    <select id="isBorrowed" parameterType="com.example.demo.entity.CId"> select borrowed from book
+        where id = #{id}; </select>
+    <!-- 借出 -->
+    <update id="borrow" parameterType="com.example.demo.entity.CIds"> update book set borrow =
+        #{uid} where id = #{id} </update>
+
+
+</mapper>
