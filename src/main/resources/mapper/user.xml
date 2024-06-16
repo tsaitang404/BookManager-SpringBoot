@@ -19,5 +19,7 @@
     <update id="modUser" parameterType="com.example.demo.entity.User">
         update  user set username=#{username},password=#{password},description=#{description},email=#{email},avatar=#{avatar} where id = #{id};
     </update>
+       <delete id="delUser" parameterType="com.example.demo.entity.CId"> delete from user where id =
+        #{id} </delete>
 
 </mapper>

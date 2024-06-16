@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.UserDao;
+import com.example.demo.entity.CId;
 import com.example.demo.entity.CString;
 import com.example.demo.entity.User;
 
@@ -64,6 +65,11 @@ public class UserController {
         }
         return 0;
 
+    }
+
+    @PostMapping("/deluser")
+    public int delUser(@RequestBody CId id) {
+        return userDao.delUser(id);
     }
 
     @PostMapping("/findbyname")
