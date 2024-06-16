@@ -48,12 +48,20 @@ public class BookController {
         return bookDao.newBook(book);
     }
 
-    // 添加书
+    // 修改书
     // 参数：书对象 返回：非0成功、0失败
     @PostMapping("/modbook")
     public boolean modBook(@RequestBody Book book) {
 
         return bookDao.modBook(book);
+    }
+
+    // 删除书
+    // 参数：书id对象 返回：非0成功、0失败
+    @PostMapping("/delbook")
+    public int delBook(@RequestBody CId id) {
+
+        return bookDao.delBook(id);
     }
 
     // 获取最新添加的24本书

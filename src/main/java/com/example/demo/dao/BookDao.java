@@ -16,7 +16,7 @@ public interface BookDao {
 
     boolean modBook(Book book);
 
-    boolean banBook(Book book);
+    int delBook(CId id);
 
     List<Book> latestItems();
 

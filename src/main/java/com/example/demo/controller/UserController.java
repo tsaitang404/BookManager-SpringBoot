@@ -32,8 +32,10 @@ public class UserController {
         }
     }
 
-    public CString cString;
+    public CString cString = new CString();
 
+    // 注册接口
+    // 参数 user对象 返回 uid 成功 0 or null 失败
     @PostMapping("/register")
     public User register(@RequestBody User user) {
         cString.setText(user.getUsername());
