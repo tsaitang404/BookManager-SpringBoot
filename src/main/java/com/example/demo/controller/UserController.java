@@ -56,6 +56,16 @@ public class UserController {
         }
     }
 
+    @PostMapping("/moduser")
+    public int modUser(@RequestBody User user) {
+        cString.setText(user.getUsername());
+        if (userDao.findByName(cString).isEmpty()) {
+            return userDao.modUser(user);
+        }
+        return 0;
+
+    }
+
     @PostMapping("/findbyname")
     public User postMethodName(@RequestBody CString username) {
         username.setText(username.getText().toLowerCase());

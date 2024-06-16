@@ -16,6 +16,8 @@
     <insert id="register" parameterType="com.example.demo.entity.User">
         insert user(username,password,description,email,avatar,data ) values (#{username},#{password},#{description},#{email},#{avatar},#{data});
     </insert>
-
+    <update id="modUser" parameterType="com.example.demo.entity.User">
+        update  user set username=#{username},password=#{password},description=#{description},email=#{email},avatar=#{avatar} where id = #{id};
+    </update>
 
 </mapper>

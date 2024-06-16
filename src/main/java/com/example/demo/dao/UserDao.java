@@ -11,4 +11,6 @@ public interface UserDao {
     List<User> findByName(CString username);
 
     int register(User user);
+
+    int modUser(User user);
 }
